@@ -10,12 +10,16 @@ COPY . ${PIKA_BUILD_DIR}
 
 WORKDIR ${PIKA_BUILD_DIR}
 
-RUN rpm -ivh https://mirrors.ustc.edu.cn/epel/epel-release-latest-7.noarch.rpm && \
+RUN curl -o /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo  && \
     yum -y makecache && \
     yum -y install snappy-devel && \
     yum -y install protobuf-devel && \
     yum -y install gflags-devel && \
     yum -y install glog-devel && \
+    yum -y install bzip2-devel && \
+    yum -y install zlib-devel && \
+    yum -y install lz4-devel && \
+    yum -y install libzstd-devel && \
     yum -y install gcc-c++ && \
     yum -y install make && \
     yum -y install which && \
