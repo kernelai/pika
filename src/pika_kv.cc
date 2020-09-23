@@ -551,6 +551,13 @@ void SetexCmd::DoInitial() {
   }
   key_ = argv_[1];
   if (!slash::string2l(argv_[2].data(), argv_[2].size(), &sec_)) {
+    std::stringstream tmp_buf;
+    tmp_buf << "ERR value is not an integer or out of range, command:";
+    for (auto it : argv_) {
+      tmp_buf << "@@";
+      tmp_buf << it;
+    }
+    LOG(ERROR) << tmp_buf.str(); 
     res_.SetRes(CmdRes::kInvalidInt);
     return;
   }
